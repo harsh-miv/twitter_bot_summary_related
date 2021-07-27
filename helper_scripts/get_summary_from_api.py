@@ -34,6 +34,7 @@ def get_summary(URL,NO_OF_SENTENCES_IN_SUMMARY=7):
     # parameters being used during request
     PARAMS={"SM_API_KEY":SMMRY_KEY,
             "SM_WITH_BREAK":"true",
+            "SM_KEYWORD_COUNT":7,
             "SM_URL":URL
             }
     start_time=time.time()
@@ -55,9 +56,10 @@ def get_summary(URL,NO_OF_SENTENCES_IN_SUMMARY=7):
     # Required output
     title=data["sm_api_title"]
     text=data["sm_api_content"]
+    keywords=data["sm_api_keyword_array"]
 
     # Final output being used by bot
-    final_data={"title":title,"text":text}
+    final_data={"title":title,"text":text,"keywords":keywords}
     
 
     print("Summarization Fininshed")

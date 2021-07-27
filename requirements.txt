@@ -1,7 +1,6 @@
 beautifulsoup4==4.9.3
 blis==0.7.4
 catalogue==2.0.4
-cdifflib==1.2.5
 certifi==2021.5.30
 charset-normalizer==2.0.3
 click==7.1.2
@@ -13,6 +12,7 @@ feedparser==6.0.8
 filelock==3.0.12
 idna==3.2
 importlib-metadata==4.6.1
+jellyfish==0.8.2
 jieba3k==0.35.1
 Jinja2==3.0.1
 joblib==1.0.1

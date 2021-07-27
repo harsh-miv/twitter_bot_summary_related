@@ -1,3 +1,4 @@
+from nltk.corpus.reader.reviews import TITLE
 from helper_scripts.article_keyword_generation import *
 from helper_scripts.get_related_articles import *
 
@@ -5,7 +6,11 @@ import jellyfish
 
 def related_article_tweet(tweet,api,ARTICLE_URL,summary_data):
     # generating keywords to find similar articles
+    final_keywords_list=[]
 
+    ## APPROACH 1
+    ## KEYWORDS NLP LIBRARIES APPROACH 
+    '''
     # title keywords
     title_keywords_list=list(set(get_keywords_spacy(summary_data["title"])).union(set(get_title_keywords(summary_data["title"]))))
 
@@ -24,7 +29,14 @@ def related_article_tweet(tweet,api,ARTICLE_URL,summary_data):
     # merging keywords from title and summary
     # final_keywords_list=union_list(summary_keywords_list,title_keywords_list)
 
-    final_keywords_list.sort(reverse=True)
+    final_keywords_list.sort(reverse=True) 
+    '''
+
+    ## APPROACH 2
+    ## KEYWORDS API APPROACH
+    api_keywords=summary_data["keywords"]
+    final_keywords_list=api_keywords
+
 
     # generating related links using keywords using external API
     related_links_data=get_related_urls(final_keywords_list,original_title=summary_data["title"])
@@ -57,7 +69,8 @@ def related_article_tweet(tweet,api,ARTICLE_URL,summary_data):
             
             # if related url found is identical to the original url or similarity ratio between related and original titles is more than 0.8
             # then the related article will be ignore to skip same article being sent as a reply
-            if related_url==ARTICLE_URL or (related_curr_similarity_ratio>0.8 or related_curr_similarity_ratio<=0.1 ):
+            
+            if related_url==ARTICLE_URL or (related_curr_similarity_ratio>0.9 or related_curr_similarity_ratio<=0.1 ) or related_title==summary_data['title']:
                 continue
                 
 

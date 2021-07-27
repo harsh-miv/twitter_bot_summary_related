@@ -13,8 +13,10 @@ from helper_scripts.get_key_data import *
 from helper_scripts.check_tweet_already_replied import *
 # checks url is a article or some other kind of content
 from helper_scripts.check_article_or_not import *
+from helper_scripts.url_reachable_right_now import *
 # retrieves summary data from the external api 
-from helper_scripts.get_text_from_api import *
+from helper_scripts.get_summary_from_api import *
+
 
 
 # tweet function scripts
@@ -77,6 +79,12 @@ def find_latest_mentions_and_reply():
         ARTICLE_URL=article_urls[0]
         # No of sentences in the summary
         NO_OF_SENTENCES_IN_SUMMARY=7
+
+        if(is_url_currently_reachable(ARTICLE_URL)==False):
+            site_unreachable_status="@"+tweet.user.screen_name+" site currently unreachable by bot right now."
+            api.update_status(status=site_unreachable_status,in_reply_to_status_id=tweet.id, auto_populate_reply_metadata=False)
+            return
+
         
         # summary data received from the summary api
         # summary_data should be in a dictionary with
