@@ -2,7 +2,7 @@
 Twitter bot which replies with summary of mentioned article inform of images and provides related articles
 
 # Example Output
-####[tweet link](https://twitter.com/poorcurrent/status/1420083498950414339)
+#### [tweet link](https://twitter.com/poorcurrent/status/1420083498950414339)
 <p align="center">
      <img src="./images/twitter_bot_example_1.png" alt="Flowchart of Reply Process">
 </p>
